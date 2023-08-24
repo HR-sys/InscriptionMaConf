@@ -1,0 +1,229 @@
+
+
+<div class="container">
+
+  <h2 class="title" >{{ title }}</h2>
+
+
+  <div class="card" *ngIf="listError.length != 0">
+    <div class="card-header">
+      Corriger    les erreurs suivant :  
+    </div>
+    <div class="card-body">
+      <div class="card-text">
+        <div  role="alert">
+          <ul>
+            <li *ngFor="let list of listError"> {{ list }} </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <h3 class="titleh3" >Qui êtes vous?</h3>
+
+<form ngNativeValidate (ngSubmit)="preValidation()" >
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="prenom" class="form-label">Prenom*</label>
+        <input type="text" class="form-control" name="Prenom" [disabled] = "formDisabled == true" [(ngModel)]="prenom"  id="prenom" placeholder="Prenom">
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <label for="nom" class="form-label">Nom*</label>
+        <input type="text" class="form-control" name="nom" [disabled] = "formDisabled == true"  [(ngModel)]="nom" id="nom" placeholder="Nom">
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="email" class="form-label">Email adress*</label>
+        <input type="email" class="form-control" name="email" [disabled] = "formDisabled == true"  [(ngModel)]="email" id="email" placeholder="Email@gmail.com">
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col">
+      <label for="exampleFormControlInput1" class="form-label">Sexe*</label>
+
+      <div class="form-check ">
+        <input class="form-check-input" type="radio" [disabled] = "formDisabled == true"  value="M" [(ngModel)]="sexe" name="sexe" id="sexe">
+        <label class="form-check-label" for="homme">
+          Je suis un homme
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" [disabled] = "formDisabled == true" value="F" [(ngModel)]="sexe" name="sexe" id="sexe" checked>
+        <label class="form-check-label" for="femme">
+          Je suis une femme
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="institution" class="form-label">Institution *</label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="institution" name="institution" id="institution" placeholder="Institution">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="adresse" class="form-label">Adress *</label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="adresse" id="adresse" name="adresse" placeholder="Adress">
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <label for="pays" class="form-label">Pays *</label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="pays" id="pays" name="pays" placeholder="Pays">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="code" class="form-label">Code Postal *</label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="code" id="code" name="code" placeholder="Adress">
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <label for="ville" class="form-label">Ville *</label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="ville" id="ville" name="ville" placeholder="Pays">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="mb-3">
+        <label for="pageWebP" class="form-label">Page web personnelle </label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="pageP" id="pageWebP" name="pageP" placeholder="Adress">
+      </div>
+    </div>
+    <div class="col">
+      <div class="mb-3">
+        <label for="pageWebI" class="form-label">Page web institution </label>
+        <input type="text" class="form-control" [disabled] = "formDisabled == true"  [(ngModel)]="pageI" id="pageWebI" name="pays" placeholder="Pays">
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="titleh3" >Quelle inscription souhaites-vous?</h3>
+
+
+  <div class="row">
+    <div class="col">
+      <div class="form-check" *ngFor="let item of listInscription">
+        <input class="form-check-input" type="radio" name="'text' + item.id" [checked]="item.checked == true" [disabled] = "formDisabled == true" [value]="item.id"  [(ngModel)]="inscription" id="inscription">
+        <label class="form-check-label" for="flexRadioDefault1">
+          {{ item.text + " (" + item.id + " EUR)" }} 
+        </label>
+      </div>
+      
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="titleh3" >Quelle hébergement souhaites-vous?</h3>
+
+
+  <div class="row">
+    <div class="col">
+      <div class="form-check" *ngFor="let item of listHebergement">
+        <input class="form-check-input" type="radio" name="item.text" [disabled] = "formDisabled == true" [value]="item.id"  [(ngModel)]="hebergement" id="hebergement">
+        <label class="form-check-label" for="flexRadioDefault1">
+          {{ item.text + " (" + item.id + " EUR)" }} 
+        </label>
+      </div>
+     
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" [disabled]="btnValid == false" type="submit"  >Pré-valider</button>
+
+    </div>
+  </div>
+
+
+</form>
+
+  <br>
+
+
+  <div class="card" *ngIf="listRecap == true" >
+    <div class="card-header">
+      Récapitulatif de l'inscription
+    </div>
+    <div class="card-body">
+      
+      <div class="card-text">
+
+        Bonjour monsieur {{prenom + " " + nom}}, vous avez procédé ç une inscription pour la conférence #MaConf20200. <br> <br>
+
+        Le détail de votre enregistrement est le suivant : <br> <br>
+
+        <ul>
+          <li>{{ libelleIns + " " + inscription }} EUR</li>
+          <li>{{ libelleHeb + " " + hebergement }} EUR </li>
+        </ul>  <br>
+
+        Le montant total est de {{ total  }} EUR.  <br> <br>
+
+        Un email vous sera envoyé prochainement à cette adresse {{email}} pour la mise en paiement ed votre inscription. <br>
+        Merci de consulter votre messagerie et de procéder au réglement de votre inscription.En vous remerciant de votre inscription, à tres bientot à la conference #MaConf2020. 
+
+
+
+      </div>
+
+      <br>
+      <a href="#" class="btn btn-primary" style="margin-right: 20px;" (click)="confirmerDonner()" >Confirmer</a> 
+      <a href="#" class="btn btn-primary" (click)="modifierDonner()" >Modifier de donner</a>
+
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+</div>
+
+
+
+
+<br> <br> <br>
+
+
+
+
+
